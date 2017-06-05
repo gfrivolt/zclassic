@@ -13,7 +13,7 @@ SPROUT_VKEY_NAME='sprout-verifying.key'
 SPROUT_PKEY_URL="https://z.cash/downloads/$SPROUT_PKEY_NAME"
 SPROUT_VKEY_URL="https://z.cash/downloads/$SPROUT_VKEY_NAME"
 
-SHA256CMD="$(command -v sha256sum || echo shasum)"
+SHA256CMD="$(command -v sha256sum || command -v gsha256sum || echo shasum)"
 SHA256ARGS="$(command -v sha256sum >/dev/null || echo '-a 256')"
 
 function fetch_params {
@@ -86,7 +86,8 @@ function main() {
 Zcash - fetch-params.sh
 
 This script will fetch the Zcash zkSNARK parameters and verify their
-integrity with sha256sum.
+integrity with 
+.
 
 If they already exist locally, it will exit now and do nothing else.
 EOF
